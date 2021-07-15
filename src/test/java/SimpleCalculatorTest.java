@@ -178,13 +178,4 @@ public class SimpleCalculatorTest {
 
         assertEquals(expectedValue, calculator.calculate(input));
     }
-
-    @Test
-    @DisplayName("Complex Expression Test #4")
-    void complexExpressionTest4() {
-        String input = "12.0 + 1 / 3.67233 * 4.0 - 11.0 / 3.0 * 2 - 5.0 * 2.0 / 2.0";
-        double expectedValue = 12.0 + 1 / 3.67233 * 4.0 - 11.0 / 3.0 * 2 - 5.0 * 2.0 / 2.0;
-
-        assertEquals(expectedValue, calculator.calculate(input));
-    }
 }
