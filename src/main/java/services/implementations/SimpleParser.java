@@ -47,7 +47,7 @@ public class SimpleParser implements Parser {
         return st.peek();
     }
 
-    private void addUnaryOperatorToExpression(Stack<Expression> st, Token token) {
+    private void addUnaryOperatorToExpression(Stack<Expression> st, Token token) throws InvalidExpressionException {
         UnaryOperator unaryOperator = UnaryOperator.builder()
                 .operator(token.getData())
                 .build();
@@ -60,6 +60,16 @@ public class SimpleParser implements Parser {
         if (prevExpression instanceof Operator) {
             // set according to precedence
             // 2 * 4 - -3 + 5
+            Expression temp = prevExpression;
+            while (((Operator) temp).getRight() != null) {
+                if (((Operator) temp).getRight() instanceof Operator) {
+                    temp = ((Operator) temp).getRight();
+                } else {
+                    throw new InvalidExpressionException(ExceptionMessages.INVALID_EXPRESSION_ILL_FORMED_OPERATORS_MESSAGE);
+                }
+            }
+            ((Operator) temp).setRight(unaryOperator);
+            st.push(prevExpression);
         } else {
             unaryOperator.setRight(prevExpression);
             st.push(unaryOperator);

@@ -117,6 +117,42 @@ public class SimpleCalculatorTest {
     }
 
     @Test
+    @DisplayName("Unary operator test #1")
+    void unaryOperatorTest1() {
+        String input = "--3.67233";
+        double expectedValue = -(-3.67233);
+
+        assertEquals(expectedValue, calculator.calculate(input));
+    }
+
+    @Test
+    @DisplayName("Unary operator test #2")
+    void unaryOperatorTest2() {
+        String input = "1--3.67233";
+        double expectedValue = 1-(-3.67233);
+
+        assertEquals(expectedValue, calculator.calculate(input));
+    }
+
+    @Test
+    @DisplayName("Unary operator test #3")
+    void unaryOperatorTest3() {
+        String input = "-1+-3.67233";
+        double expectedValue = -1+(-3.67233);
+
+        assertEquals(expectedValue, calculator.calculate(input));
+    }
+
+    @Test
+    @DisplayName("Unary operator test #4")
+    void unaryOperatorTest4() {
+        String input = "-1--3.67233";
+        double expectedValue = -1-(-3.67233);
+
+        assertEquals(expectedValue, calculator.calculate(input));
+    }
+
+    @Test
     @DisplayName("Complex Expression Test #1")
     void complexExpressionTest1() {
         String input = "    3.67233 + 12.0 - 5.0 * 2.0 / 2";
